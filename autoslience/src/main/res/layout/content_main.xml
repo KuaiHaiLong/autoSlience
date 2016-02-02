@@ -12,12 +12,20 @@
     tools:context="pers.example.khl.autoslience.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <fragment
+<!--    <fragment
         android:id="@+id/fragment"
         android:name="pers.example.khl.autoslience.UI.BaseOperateFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:layout="@layout/fragment_base_operate" />
+        tools:layout="@layout/fragment_base_operate" />-->
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
 
 </RelativeLayout>

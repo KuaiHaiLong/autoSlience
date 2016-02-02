@@ -3,12 +3,19 @@ package pers.example.khl.autoslience;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Adapter;
+
+import pers.example.khl.autoslience.UI.BaseOperateFragment;
+import pers.example.khl.autoslience.UI.ListFragment;
+import pers.example.khl.autoslience.UI.TabAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +38,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ViewPager viewPager = (ViewPager)this.findViewById(R.id.viewpager);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        setupViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        TabAdapter adapter = new TabAdapter(getSupportFragmentManager());
+        adapter.addFragment(new BaseOperateFragment(), "基本操作");
+        adapter.addFragment(new ListFragment(), "列表");
+        viewPager.setAdapter(adapter);
     }
 
     @Override
