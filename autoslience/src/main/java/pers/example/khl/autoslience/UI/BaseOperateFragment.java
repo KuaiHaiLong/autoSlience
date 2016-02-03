@@ -8,9 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
-import pers.example.khl.autoslience.MainActivity;
 import pers.example.khl.autoslience.R;
 import pers.example.khl.autoslience.Service.SlienceService;
 
