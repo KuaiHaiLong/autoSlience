@@ -4,9 +4,27 @@
     android:layout_height="match_parent"
     tools:context="pers.example.khl.autoslience.UI.BaseOperateFragment">
 
-    <TextView
+<!--    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:text="@string/hello_blank_fragment" />-->
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_on"
+        android:id="@+id/button_on"
+        android:layout_marginTop="77dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_off"
+        android:id="@+id/button_off"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/button_on"
+        android:layout_marginBottom="136dp" />
 
 </RelativeLayout>
