@@ -24,7 +24,9 @@ public class BaseOperateFragment extends Fragment implements View.OnClickListene
         View view = inflater.inflate(R.layout.fragment_base_operate,
                 container, false);
         Button button_on = (Button)view.findViewById(R.id.button_on);
+        Button button_off = (Button)view.findViewById(R.id.button_off);
         button_on.setOnClickListener(this);
+        button_off.setOnClickListener(this);
 
         return  view;
 
@@ -53,7 +55,7 @@ public class BaseOperateFragment extends Fragment implements View.OnClickListene
             case R.id.button_off:
 
                 Log.d("msg", "on click button off !");
-                paramBundle.putInt("on_off",1);
+                paramBundle.putInt("on_off", 1);
                 intent.putExtras(paramBundle);
                 this.getActivity().startService(intent);
 
