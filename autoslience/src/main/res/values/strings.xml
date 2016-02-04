@@ -2,8 +2,8 @@
     <string name="app_name">自动静音</string>
     <string name="action_settings">Settings</string>
 
-    <string name="hello_blank_fragment">Hello, I am fragment</string>
-    <string name="hello_list_fragment">Hello, I am list fragment</string>
+<!--    <string name="hello_blank_fragment">Hello, I am fragment</string>
+    <string name="hello_list_fragment">Hello, I am list fragment</string>-->
     <string name="button_on">打开静音</string>
     <string name="button_off">关闭静音</string>
 </resources>

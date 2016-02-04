@@ -4,18 +4,18 @@
     android:layout_height="match_parent"
     tools:context="pers.example.khl.autoslience.UI.ListFragment">
 
-    <TextView
+<!--    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="2dp"
-        android:text="@string/hello_list_fragment" />
+        android:text="@string/hello_list_fragment" />-->
 
     <!--RecyclerView 小组件比 ListView 更高级且更具灵活性。 此小组件是一个用于显示庞大数据集的容器，
     可通过保持有限数量的视图进行非常有效的滚动操作。-->
-<!--    <android.support.v7.widget.RecyclerView
-        android:id="@+id/my_recycler_view"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_list"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>-->
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>
