@@ -45,20 +45,16 @@ public class ListFragment extends Fragment {
         Cursor cursor = taskDao.queryTheCursor();
         TaskAutoAdapter adapter = new TaskAutoAdapter(getActivity(),cursor,R.layout.item_list);
 
-
         //使用getAllTask获取数据，直接赋值，不能监听数据变换
         //TaskAdapter adapter = new TaskAdapter(taskDao.getAllTask(),R.layout.item_list);
         adapter.setOnItemClickLitener(new OnRecyclerViewItemClickListener(){
-
             @Override
             public void onItemClick(View view, int position) {
                 Toast.makeText(getActivity(), position + " click",
                         Toast.LENGTH_SHORT).show();
             }
-
         });
         mRecyclerView.setAdapter(adapter);
-
 
         return view;
     }
