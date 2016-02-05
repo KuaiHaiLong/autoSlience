@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import pers.example.khl.autoslience.DAO.TaskDao;
 import pers.example.khl.autoslience.DTO.Task;
+import pers.example.khl.autoslience.Interface.OnRecyclerViewItemClickListener;
 import pers.example.khl.autoslience.R;
 
 /**
@@ -21,17 +22,34 @@ public class TaskAutoAdapter  extends BaseAbstractRecycleCursorAdapter{
 
     private int itemLayout;
 
+    private OnRecyclerViewItemClickListener mOnItemClickLitener;
+
+    public void setOnItemClickLitener(OnRecyclerViewItemClickListener mOnItemClickLitener)
+    {
+        this.mOnItemClickLitener = mOnItemClickLitener;
+    }
+
     public TaskAutoAdapter(Context context, Cursor c,int itemLayout) {
         super(context, c);
         this.itemLayout = itemLayout;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, Cursor cursor) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, Cursor cursor) {
         Task item = TaskDao.getTask(cursor);
         //setText不能设置int型，会报Resources$NotFoundException String resource ID #0x1错误
         //((MyViewHolder) holder).mTextView.setText(item._id);
         ((MyViewHolder) holder).mTextView.setText(Integer.toString(item._id));
+
+        if (mOnItemClickLitener != null){
+            holder.itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    int pos = holder.getLayoutPosition();
+                    mOnItemClickLitener.onItemClick(holder.itemView, pos);
+                }
+            });
+        }
     }
 
     @Override
@@ -47,13 +65,6 @@ public class TaskAutoAdapter  extends BaseAbstractRecycleCursorAdapter{
         public MyViewHolder(View view) {
             super(view);
             mTextView = (TextView)view.findViewById(R.id.text_view);
-
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("MyViewHolder", "onClick--> position = " + v.getId());
-                }
-            });
         }
     }
 }

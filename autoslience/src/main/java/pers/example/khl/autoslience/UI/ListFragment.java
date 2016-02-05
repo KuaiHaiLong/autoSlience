@@ -10,12 +10,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import pers.example.khl.autoslience.Adapter.BaseAbstractRecycleCursorAdapter;
 import pers.example.khl.autoslience.Adapter.TaskAdapter;
 import pers.example.khl.autoslience.Adapter.TaskAutoAdapter;
 import pers.example.khl.autoslience.DAO.TaskDao;
 import pers.example.khl.autoslience.DTO.Task;
+import pers.example.khl.autoslience.Interface.OnRecyclerViewItemClickListener;
 import pers.example.khl.autoslience.R;
 
 public class ListFragment extends Fragment {
@@ -25,11 +27,6 @@ public class ListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        TaskDao taskDao = new TaskDao(this.getActivity());
-        if(taskDao.queryTheCursor().getCount()==0){
-            taskDao.initData();
-        }
-
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_list, container, false);
 
@@ -38,15 +35,30 @@ public class ListFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(c);
 
         mRecyclerView.setLayoutManager(layoutManager);
-        //mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        //使用getAllTask获取数据，直接赋值，不能监听数据变换
-        //mRecyclerView.setAdapter(new TaskAdapter(taskDao.getAllTask(),R.layout.item_list));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        TaskDao taskDao = new TaskDao(this.getActivity());
+        if(taskDao.queryTheCursor().getCount()==0){
+            taskDao.initData();
+        }
 
         //使用BaseAbstractRecycleCursorAdapter赋值
         Cursor cursor = taskDao.queryTheCursor();
-        BaseAbstractRecycleCursorAdapter adapter = new TaskAutoAdapter(getActivity(),cursor,R.layout.item_list);
+        TaskAutoAdapter adapter = new TaskAutoAdapter(getActivity(),cursor,R.layout.item_list);
+
+
+        //使用getAllTask获取数据，直接赋值，不能监听数据变换
+        //TaskAdapter adapter = new TaskAdapter(taskDao.getAllTask(),R.layout.item_list);
+        adapter.setOnItemClickLitener(new OnRecyclerViewItemClickListener(){
+
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(getActivity(), position + " click",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+        });
         mRecyclerView.setAdapter(adapter);
+
 
         return view;
     }

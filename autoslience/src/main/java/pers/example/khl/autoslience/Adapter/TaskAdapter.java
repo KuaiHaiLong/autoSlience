@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import pers.example.khl.autoslience.DTO.Task;
+import pers.example.khl.autoslience.Interface.OnRecyclerViewItemClickListener;
 import pers.example.khl.autoslience.R;
 
 /**
@@ -25,25 +26,46 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         this.itemLayout = itemLayout;
     }
 
+    private OnRecyclerViewItemClickListener mOnItemClickLitener;
+
+    public void setOnItemClickLitener(OnRecyclerViewItemClickListener mOnItemClickLitener)
+    {
+        this.mOnItemClickLitener = mOnItemClickLitener;
+    }
+
+
+    //创建新View，被LayoutManager所调用
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(itemLayout, parent, false);
         return new MyViewHolder(v);
     }
 
+    //将数据与界面进行绑定的操作
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
         Task item = items.get(position);
         holder.mTextView.setText(item.daysOfWeek);
         //All the thing you gonna show in the item
+        if (mOnItemClickLitener != null){
+            holder.itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    int pos = holder.getLayoutPosition();
+                    mOnItemClickLitener.onItemClick(holder.itemView, pos);
+                }
+            });
+        }
     }
 
+    //获取数据的数量
     @Override
     public int getItemCount() {
         return items.size();
     }
 
 
+    //自定义的ViewHolder，持有每个Item的的所有界面元素
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         public TextView mTextView;
@@ -51,13 +73,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         public MyViewHolder(View view) {
             super(view);
             mTextView = (TextView)view.findViewById(R.id.text_view);
-
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("MyViewHolder", "onClick--> position = " + v.getId());
-                }
-            });
         }
     }
 }
