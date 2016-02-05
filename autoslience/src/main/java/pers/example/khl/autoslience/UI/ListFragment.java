@@ -1,5 +1,6 @@
 package pers.example.khl.autoslience.UI;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -10,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import pers.example.khl.autoslience.Adapter.BaseAbstractRecycleCursorAdapter;
 import pers.example.khl.autoslience.Adapter.TaskAdapter;
+import pers.example.khl.autoslience.Adapter.TaskAutoAdapter;
 import pers.example.khl.autoslience.DAO.TaskDao;
 import pers.example.khl.autoslience.DTO.Task;
 import pers.example.khl.autoslience.R;
@@ -36,7 +39,14 @@ public class ListFragment extends Fragment {
 
         mRecyclerView.setLayoutManager(layoutManager);
         //mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setAdapter(new TaskAdapter(taskDao.getAllTask(),R.layout.item_list));
+
+        //使用getAllTask获取数据，直接赋值，不能监听数据变换
+        //mRecyclerView.setAdapter(new TaskAdapter(taskDao.getAllTask(),R.layout.item_list));
+
+        //使用BaseAbstractRecycleCursorAdapter赋值
+        Cursor cursor = taskDao.queryTheCursor();
+        BaseAbstractRecycleCursorAdapter adapter = new TaskAutoAdapter(getActivity(),cursor,R.layout.item_list);
+        mRecyclerView.setAdapter(adapter);
 
         return view;
     }

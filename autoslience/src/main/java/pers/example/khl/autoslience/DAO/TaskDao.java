@@ -50,18 +50,25 @@ public class TaskDao {
         List<Task> tasks = new ArrayList<Task>();
         Cursor taskCursor = this.queryTheCursor();
         while(taskCursor.moveToNext()){
-            Task task = new Task();
-            task._id = taskCursor.getInt(taskCursor.getColumnIndex("_id"));
-            task.is_repeated = taskCursor.getInt(taskCursor.getColumnIndex("is_repeated"));
-            task.is_valid = taskCursor.getInt(taskCursor.getColumnIndex("is_valid"));
-            task.info = taskCursor.getString(taskCursor.getColumnIndex("info"));
-            task.start_time = taskCursor.getString(taskCursor.getColumnIndex("start_time"));
-            task.end_time = taskCursor.getString(taskCursor.getColumnIndex("end_time"));
-            task.daysOfWeek = taskCursor.getString(taskCursor.getColumnIndex("daysOfWeek"));
+            Task task = this.getTask(taskCursor);
             tasks.add(task);
         }
         return  tasks;
     }
+
+    //获取Cursor当前的对象
+    public static Task getTask(Cursor taskCursor){
+        Task task = new Task();
+        task._id = taskCursor.getInt(taskCursor.getColumnIndex("_id"));
+        task.is_repeated = taskCursor.getInt(taskCursor.getColumnIndex("is_repeated"));
+        task.is_valid = taskCursor.getInt(taskCursor.getColumnIndex("is_valid"));
+        task.info = taskCursor.getString(taskCursor.getColumnIndex("info"));
+        task.start_time = taskCursor.getString(taskCursor.getColumnIndex("start_time"));
+        task.end_time = taskCursor.getString(taskCursor.getColumnIndex("end_time"));
+        task.daysOfWeek = taskCursor.getString(taskCursor.getColumnIndex("daysOfWeek"));
+        return task;
+    }
+
 
 
     //定时任务查询
