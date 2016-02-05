@@ -1,7 +1,7 @@
 package pers.example.khl.autoslience.Adapter;
 
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +20,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
     private List<Task> items;
     private int itemLayout;
+    //当前点击item的主键
+    private int _id;
 
     public TaskAdapter(List<Task> items, int itemLayout){
         this.items = items;
@@ -46,13 +48,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Task item = items.get(position);
         holder.mTextView.setText(item.daysOfWeek);
-        //All the thing you gonna show in the item
+        _id = item._id;
+
         if (mOnItemClickLitener != null){
-            holder.itemView.setOnClickListener(new View.OnClickListener(){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int pos = holder.getLayoutPosition();
-                    mOnItemClickLitener.onItemClick(holder.itemView, pos);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("id", _id);
+                    mOnItemClickLitener.onItemClick(holder.itemView, bundle);
                 }
             });
         }

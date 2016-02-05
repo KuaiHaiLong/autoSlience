@@ -2,6 +2,7 @@ package pers.example.khl.autoslience.Adapter;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +22,10 @@ import pers.example.khl.autoslience.R;
 public class TaskAutoAdapter  extends BaseAbstractRecycleCursorAdapter{
 
     private int itemLayout;
+    /*//当前点击的位置
+    private int position;
+    //当前点击item的主键
+    private int _id;*/
 
     private OnRecyclerViewItemClickListener mOnItemClickLitener;
 
@@ -37,16 +42,21 @@ public class TaskAutoAdapter  extends BaseAbstractRecycleCursorAdapter{
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, Cursor cursor) {
         Task item = TaskDao.getTask(cursor);
+        final int _id = item._id;
+        final int position = holder.getLayoutPosition();
+
         //setText不能设置int型，会报Resources$NotFoundException String resource ID #0x1错误
         //((MyViewHolder) holder).mTextView.setText(item._id);
-        ((MyViewHolder) holder).mTextView.setText(Integer.toString(item._id));
+        ((MyViewHolder) holder).mTextView.setText(Integer.toString(_id));
 
         if (mOnItemClickLitener != null){
             holder.itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-                    int pos = holder.getLayoutPosition();
-                    mOnItemClickLitener.onItemClick(holder.itemView, pos);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("id",_id);
+                    bundle.putInt("position",position);
+                    mOnItemClickLitener.onItemClick(holder.itemView,bundle);
                 }
             });
         }

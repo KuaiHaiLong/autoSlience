@@ -49,8 +49,8 @@ public class ListFragment extends Fragment {
         //TaskAdapter adapter = new TaskAdapter(taskDao.getAllTask(),R.layout.item_list);
         adapter.setOnItemClickLitener(new OnRecyclerViewItemClickListener(){
             @Override
-            public void onItemClick(View view, int position) {
-                Toast.makeText(getActivity(), position + " click",
+            public void onItemClick(View view, Bundle date) {
+                Toast.makeText(getActivity(), "id = " + date.getInt("id") + " click",
                         Toast.LENGTH_SHORT).show();
             }
         });

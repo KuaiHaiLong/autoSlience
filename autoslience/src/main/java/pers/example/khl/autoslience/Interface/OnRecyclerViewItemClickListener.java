@@ -1,5 +1,6 @@
 package pers.example.khl.autoslience.Interface;
 
+import android.os.Bundle;
 import android.view.View;
 
 /**
@@ -7,7 +8,7 @@ import android.view.View;
  */
 public interface OnRecyclerViewItemClickListener {
 
-    void onItemClick(View view , int position);
+    void onItemClick(View view , Bundle date);
 
 /*    void onItemLongClick(View view , int position);*/
 
