@@ -4,10 +4,74 @@
     android:layout_height="match_parent"
     tools:context="pers.example.khl.autoslience.UI.CreatTaskFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="create new task！！" />
+        android:layout_gravity="left|top">
 
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="闹钟名："/>
+
+            <EditText
+                android:id="@+id/clock_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="input name"
+                android:layout_weight="4"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/start_time_show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text=""/>
+
+            <Button
+                android:id="@+id/start_time_choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/start_time"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/end_time_show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text=""/>
+
+            <Button
+                android:id="@+id/end_time_choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/end_time"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 </FrameLayout>
