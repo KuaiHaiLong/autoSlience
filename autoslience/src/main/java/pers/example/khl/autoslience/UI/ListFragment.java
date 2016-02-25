@@ -22,6 +22,8 @@ import pers.example.khl.autoslience.R;
 
 public class ListFragment extends Fragment {
 
+    public RecyclerView mRecyclerView;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,7 +33,7 @@ public class ListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
 
         FragmentActivity c = getActivity();
-        RecyclerView mRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_list);
+        mRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(c);
 
         mRecyclerView.setLayoutManager(layoutManager);
@@ -57,6 +59,10 @@ public class ListFragment extends Fragment {
         mRecyclerView.setAdapter(adapter);
 
         return view;
+    }
+
+    public RecyclerView getmRecyclerView(){
+        return mRecyclerView;
     }
 
 }

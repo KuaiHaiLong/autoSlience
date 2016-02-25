@@ -76,7 +76,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
 
         public MyViewHolder(View view) {
             super(view);
-            mTextView = (TextView)view.findViewById(R.id.text_view);
+            mTextView = (TextView)view.findViewById(R.id.item_info);
         }
     }
 }

@@ -3,6 +3,7 @@ package pers.example.khl.autoslience.UI;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,7 +73,7 @@ public class CreatTaskFragment extends Fragment implements View.OnClickListener 
                 ,c.get(Calendar.HOUR_OF_DAY)
                 ,c.get(Calendar.MINUTE)
                 //true表示采用24小时制
-                ,false  ).show();
+                ,true).show();
 
     }
 
@@ -140,19 +141,25 @@ public class CreatTaskFragment extends Fragment implements View.OnClickListener 
        CheckBox checkbox_fri = (CheckBox)this.getActivity().findViewById(R.id.checkbox_fri);
        CheckBox checkbox_sat = (CheckBox)this.getActivity().findViewById(R.id.checkbox_sat);
 
-       days.append(checkbox_sun.isChecked()?"1":"0");
+       days.append(checkbox_sun.isChecked() ? "1" : "0");
        days.append(checkbox_mon.isChecked()?"1":"0");
-       days.append(checkbox_tue.isChecked()?"1":"0");
+       days.append(checkbox_tue.isChecked() ? "1" : "0");
        days.append(checkbox_wed.isChecked()?"1":"0");
-       days.append(checkbox_thu.isChecked()?"1":"0");
+       days.append(checkbox_thu.isChecked() ? "1" : "0");
        days.append(checkbox_fri.isChecked()?"1":"0");
-       days.append(checkbox_sat.isChecked()?"1":"0");
+       days.append(checkbox_sat.isChecked() ? "1" : "0");
 
        task.daysOfWeek = days.toString();
 
        TaskDao taskDao = new TaskDao(this.getActivity());
        taskDao.addTask(task);
        taskDao.closeDB();
+
+       /*RecyclerView mRecyclerView = (RecyclerView)this.getActivity().findViewById(R.id.recycler_list);
+       mRecyclerView.getAdapter().notifyDataSetChanged();*/
+   /*    RecyclerView mRecyclerView = ((ListFragment)this.getActivity().getFragmentManager().findFragmentByTag("list"))
+               .getmRecyclerView();
+       mRecyclerView.getAdapter().notifyDataSetChanged();*/
 
        this.getActivity().finish();
 

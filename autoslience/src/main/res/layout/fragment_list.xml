@@ -14,6 +14,7 @@
     可通过保持有限数量的视图进行非常有效的滚动操作。-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_list"
+        android:tag="list"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +46,8 @@ public class TaskAutoAdapter  extends BaseAbstractRecycleCursorAdapter{
 
         //setText不能设置int型，会报Resources$NotFoundException String resource ID #0x1错误
         //((MyViewHolder) holder).mTextView.setText(item._id);
-        ((MyViewHolder) holder).mTextView.setText(Integer.toString(_id));
+        ((MyViewHolder) holder).item_name.setText(item.info);
+        ((MyViewHolder) holder).item_time.setText(item.start_time+"~"+item.end_time);
 
         if (mOnItemClickLitener != null){
             holder.itemView.setOnClickListener(new View.OnClickListener(){
@@ -70,11 +70,14 @@ public class TaskAutoAdapter  extends BaseAbstractRecycleCursorAdapter{
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView mTextView;
+        public TextView item_name;
+
+        public TextView item_time;
 
         public MyViewHolder(View view) {
             super(view);
-            mTextView = (TextView)view.findViewById(R.id.text_view);
+            item_name = (TextView)view.findViewById(R.id.item_info);
+            item_time = (TextView)view.findViewById(R.id.item_time);
         }
     }
 }
