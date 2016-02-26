@@ -3,6 +3,7 @@ package pers.example.khl.autoslience.DAO;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +70,10 @@ public class TaskDao {
         return task;
     }
 
-
+    //删除Cursor当前的对象
+    public void delTaskById(int id){
+        db.delete("task","_id = ?",new String[]{""+id});
+    }
 
     //定时任务查询
 /*    public List<Task> queryReturnList() {

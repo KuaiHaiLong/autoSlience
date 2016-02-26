@@ -52,7 +52,7 @@ public class ListFragment extends Fragment {
         adapter.setOnItemClickLitener(new OnRecyclerViewItemClickListener(){
             @Override
             public void onItemClick(View view, Bundle date) {
-                Toast.makeText(getActivity(), "id = " + date.getInt("id") + " click",
+                Toast.makeText(getActivity(), "position = " + date.getInt("position") + " click",
                         Toast.LENGTH_SHORT).show();
             }
         });
