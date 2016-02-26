@@ -61,8 +61,4 @@ public class ListFragment extends Fragment {
         return view;
     }
 
-    public RecyclerView getmRecyclerView(){
-        return mRecyclerView;
-    }
-
 }

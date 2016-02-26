@@ -1,6 +1,7 @@
 package pers.example.khl.autoslience.UI;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +21,7 @@ import java.util.Calendar;
 import pers.example.khl.autoslience.DAO.TaskDao;
 import pers.example.khl.autoslience.DTO.Task;
 import pers.example.khl.autoslience.DTO.TimeType;
+import pers.example.khl.autoslience.MainActivity;
 import pers.example.khl.autoslience.R;
 
 public class CreatTaskFragment extends Fragment implements View.OnClickListener ,TimePickerDialog.OnTimeSetListener{
@@ -155,13 +157,14 @@ public class CreatTaskFragment extends Fragment implements View.OnClickListener 
        taskDao.addTask(task);
        taskDao.closeDB();
 
-       /*RecyclerView mRecyclerView = (RecyclerView)this.getActivity().findViewById(R.id.recycler_list);
-       mRecyclerView.getAdapter().notifyDataSetChanged();*/
-   /*    RecyclerView mRecyclerView = ((ListFragment)this.getActivity().getFragmentManager().findFragmentByTag("list"))
+       /*无法更新数据表，因为只是退出当前的activity，而新建activit和MainActivity不是同一个activity所以无法取得Adapter(推测)
+       RecyclerView mRecyclerView = ((ListFragment)this.getActivity().getFragmentManager().findFragmentByTag("list"))
                .getmRecyclerView();
-       mRecyclerView.getAdapter().notifyDataSetChanged();*/
+       mRecyclerView.getAdapter().notifyDataSetChanged();
+       this.getActivity().finish();*/
 
-       this.getActivity().finish();
+       Intent intent = new Intent(this.getActivity(), MainActivity.class);
+       startActivity(intent);
 
    }
 }
